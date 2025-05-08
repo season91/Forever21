@@ -8,7 +8,7 @@ public class TimeManager : MonoBehaviour
 
     float TotalTime = 0f;
 
-    float DeltaTime = 1f;
+    //float DeltaTime = 1f;
 
     bool CalculateTime = false;
 
