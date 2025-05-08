@@ -18,34 +18,24 @@ public class Player : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         controller = GetComponent<PlayerController>();
         
-        controller.move.performed += ctx => HandleMoveInput(); // 이동 값 최신화
-        controller.move.canceled += ctx => HandleMoveCanceled(); // 이동 중지
-        controller.look.performed += ctx => HandleLookInput(); // 회전 최신화
-    }
-    private void Update()
-    {
-        Rotate();
+        controller.move.performed += ctx => Move(); // 이동
+        controller.move.canceled += ctx => Stop(); // 이동 중지
+        controller.look.performed += ctx => Rotate(); // 회전
     }
 
-    private void FixedUpdate()
-    {
-        Movment();
-    }
-
-    // movementDirection 값 최신화
-    private void HandleMoveInput()
+    private void Move()
     {
         movementDirection = controller.move.ReadValue<Vector2>().normalized;
+        _rigidbody.velocity = movementDirection * 5;
     }
 
-    // movementDirection 값 중지
-    private void HandleMoveCanceled()
+    private void Stop()
     {
         movementDirection = Vector2.zero;
+        _rigidbody.velocity = movementDirection;
     }
 
-    // lookDirection 값 최신화
-    private void HandleLookInput()
+    private void Rotate()
     {
         if (_camera == null)
         {
@@ -64,20 +54,9 @@ public class Player : MonoBehaviour
         {
             lookDirection = lookDirection.normalized;
         }
-    }
 
-    // movementDirection 이동 처리
-    private void Movment()
-    {
-        _rigidbody.velocity = movementDirection * 5;
-    }
-
-    // 바라보는 방향으로 캐릭터 회전 처리
-    private void Rotate()
-    {
         float rotZ = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
         bool isLeft = Mathf.Abs(rotZ) > 90f;
         characterRenderer.flipX = isLeft;
     }
-
 }
