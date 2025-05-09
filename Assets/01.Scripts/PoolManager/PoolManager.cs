@@ -30,12 +30,14 @@ public class PoolManager : MonoBehaviour
     // ===========================================================
 
     // [추가하세요] ===========================================================
-    public enum PoolObjType
+    public enum PoolObjType 
     {
         Monster,
         Projectile,
         Item
     }
+    // =======================================================================
+
     private string GetEnumStringToKor(PoolObjType type) =>
     type switch
     {
@@ -63,23 +65,31 @@ public class PoolManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
 
+    private void Start()
+    {
         InitPrefabNames();
         InitGroupDictionary();
         InitPoolDictionary();
     }
 
+    #region Init
+    // Prefab 이름 저장
+    // 이유: Resource Manager에 key값으로 Prefab의 이름을 넣어줘야 함.
     private void InitPrefabNames()
     {
         _prefabNameDictionary = new Dictionary<PoolObjType, string[]>
         {
             // [추가하세요] ===========================================================
-            { PoolObjType.Monster, new string[] { "Monster1", "Monster2" } },
-            { PoolObjType.Projectile, new string[] { "Bullet1", "Bullet2" } },
-            { PoolObjType.Item, new string[] { "Exp" } }
+            { PoolObjType.Monster, new string[] { "Monster" } },
+            { PoolObjType.Projectile, new string[] { "PlayerNormalAttack" } },
+            { PoolObjType.Item, new string[] { "ExpItem", "TempItem" } }
+            // =======================================================================
         };
     }
 
+    // Hierachy에 Create되는 Object들의 부모 오브젝트 지정 or 생성 후 지정
     private void InitGroupDictionary()
     {
         _groupDictionary = new Dictionary<PoolObjType, GameObject>();
@@ -105,6 +115,7 @@ public class PoolManager : MonoBehaviour
         }
     }
 
+    // Pool Object Type 마다 필요한 PoolData 지정/설정
     private void InitPoolDictionary()
     {
         _poolDictionary = new Dictionary<PoolObjType, PoolData>();
@@ -122,6 +133,7 @@ public class PoolManager : MonoBehaviour
         }
     }
 
+    // Resource Manager에서 Pool Object들을 이름을 넣어 가져오기
     private GameObject[] InitPrefabs(string[] names)
     {
         GameObject[] gameObjects = new GameObject[names.Length];
@@ -134,6 +146,8 @@ public class PoolManager : MonoBehaviour
         return gameObjects;
     }
 
+    // Prefab의 개수에 따른 Pool List 생성
+    // 예) Item[0] == EXP,  Item[1] == Temp
     private List<GameObject>[] InitPools(int length)
     {
         List<GameObject>[] pools = new List<GameObject>[length];
@@ -144,13 +158,17 @@ public class PoolManager : MonoBehaviour
         return pools;
     }
 
+    #endregion
+
+
     /// <summary>
     /// 지정한 인덱스에 해당하는 Object를 풀에서 가져옵니다.
     /// 비활성화된 Object가 없으면 새로 생성하여 반환합니다.
+    /// [ Item = 0: Exp / 1: Temp ]
     /// </summary>
-    /// <param name="type"> 생성하려는 Object의 타입 enum PoolObjType </param>
-    /// <param name="index"> Object 종류 인덱스 </param>
-    /// <returns> 활성화된 해당 GameObject </returns>
+    /// <param name="type">생성하려는 Object의 타입 enum PoolObjType</param>
+    /// <param name="index">Object 종류 인덱스</param>
+    /// <returns>활성화된 해당 GameObject</returns>
     public GameObject Get(PoolObjType type, int index)
     {
         if (!_poolDictionary.ContainsKey(type))
