@@ -2,15 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+enum ItemType
+{
+    None = 0,
+    Exp,
+    Heal,
+    Functional,
+}
+
 public class InteractiveItem : MonoBehaviour
 {
     // Start is called before the first frame update
     BoxCollider2D boxColider2D;
     SpriteRenderer spriteRenderer;
 
-    delegate void OnCollisionEnter(Collider2D other);
+    protected delegate void OnCollisionEnter();
 
-    OnCollisionEnter onCollisionEnter;
+    protected OnCollisionEnter onCollisionEnter;
 
     private void Reset()
     {
@@ -18,19 +26,12 @@ public class InteractiveItem : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void Start()
-    {
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag(StringClass.Player) == true)
         {
-            onCollisionEnter(collision);
+            onCollisionEnter();
+            gameObject.SetActive(false);
         }   
     }
-
-
-
 }
