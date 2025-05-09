@@ -19,13 +19,15 @@ public class PlayerNormalAttackController : MonoBehaviour, IDamageDealer
 #if UNITY_EDITOR
     private void Reset()
     {
-        if (fireRate <= 0) fireRate = 0.5f;
-        if (lifetime <= 0) lifetime = 5f;
+        fireRate = 0.5f;
+        lifetime = 5f;
     }
 #endif
 
     private void Start()
     {
+        if (fireRate <= 0) fireRate = 0.5f;
+        if (lifetime <= 0) lifetime = 5f;
         InvokeRepeating(nameof(ShootProjectile), 0f, fireRate);
     }
 
