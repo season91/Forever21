@@ -67,7 +67,8 @@ public class Player : MonoBehaviour
 
         status = GetComponent<PlayerStatus>();
 
-        projectileHandler = new ProjectileHandler();
+        // 유성민이 추가함
+        projectileHandler.Init();
     }
 
     private void Move()

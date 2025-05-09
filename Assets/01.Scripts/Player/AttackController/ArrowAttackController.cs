@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ArrowAttackController : BaseAttack
 {
-    public void Init()
+    public override void Init()
     {
-        BaseStatus = new ProjectileStatus();
+        ProjectilePrefab = ResourceManager.Instance.GetResource<GameObject>("ArrowProjectile");
     }
 
 }

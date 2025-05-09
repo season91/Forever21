@@ -16,6 +16,8 @@ public class Projectile : MonoBehaviour
 
     [SerializeField] BoxCollider2D collision2D;
 
+
+
     private void Awake()
     {
         collision2D = GetComponent<BoxCollider2D>();

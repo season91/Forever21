@@ -10,17 +10,17 @@ public enum AttackHandlerEnum
 
 public class BaseAttack : MonoBehaviour
 {
-    [SerializeField] protected GameObject ProjectilePrefab;
+    protected GameObject ProjectilePrefab;
 
     public static Dictionary<AttackHandlerEnum, BaseAttack> AllAttackHandles;
 
-    public ProjectileStatus BaseStatus;
+    public ProjectileStatus BaseStatus = new ProjectileStatus();
 
-    public ProjectileStatus CurrentStatus;
+    public ProjectileStatus CurrentStatus = new ProjectileStatus();
 
 
-    [HideInInspector] public Vector2 Position;
-    [HideInInspector] public Vector2 Direction;
+    public Vector2 Position;
+    public Vector2 Direction;
 
     public Dictionary<PropertyEnum, List<ProjectileProperty>> Functions;
 
@@ -33,6 +33,11 @@ public class BaseAttack : MonoBehaviour
     public List<ProjectileProperty> SpawnFunctions;
     public List<ProjectileProperty> PassiveFunctions;
     public List<ProjectileProperty> CollisionFunctions;
+
+    public virtual void Init()
+    {
+
+    }
 
     public void PassiveUpdate()
     {
@@ -59,12 +64,11 @@ public class BaseAttack : MonoBehaviour
     {
         if(CurrentStatus.SpawnTime < 0f)
         {
-
             // object pool의 Get으로 가져와야함
-            //GameObject obj = Instantiate(ProjectilePrefab);
-            //obj.transform.position = Position;
-            //float angle = Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg;
-            //obj.transform.rotation = Quaternion.Euler(0, 0, angle);
+            GameObject obj = Instantiate(ProjectilePrefab);
+            obj.transform.position = Position;
+            float angle = Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg;
+            obj.transform.rotation = Quaternion.Euler(0, 0, angle);
             CurrentStatus.SpawnTime = BaseStatus.SpawnTime;
         }
         else
