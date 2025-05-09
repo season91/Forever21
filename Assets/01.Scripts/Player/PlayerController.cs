@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public InputAction look;
     public PlayerInput playerInput;
 
+    // controller가 바인딩 해주는 구조는 지양하기 위해, 사용하고자 하는 곳에서 바인딩
     public void Init()
     {
         playerInput = GetComponent<PlayerInput>();
