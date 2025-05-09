@@ -402,7 +402,7 @@ GameObject:
   - component: {fileID: 4978300756842813208}
   - component: {fileID: 1386869421931138419}
   m_Layer: 5
-  m_Name: Canvas_StartScene
+  m_Name: Canvas_StartScene_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
