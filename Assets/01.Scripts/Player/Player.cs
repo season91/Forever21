@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
         characterRenderer = GetComponentInChildren<SpriteRenderer>();
 
         controller = GetComponent<PlayerController>();
-        controller.playerInput = Resources.Load<PlayerInput>("Input/PlayerInputControls");
+        controller.playerInput = GetComponent<PlayerInput>();
     }
 
     private void Start()
@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
         _camera = Camera.main;
 
         _rigidbody = GetComponent<Rigidbody2D>();
-        controller = GetComponent<PlayerController>();
+        controller = GetComponent<PlayerController>(); 
         controller.Init(); // 명시적 초기화
 
 
