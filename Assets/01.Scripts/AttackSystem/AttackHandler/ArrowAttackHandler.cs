@@ -13,7 +13,7 @@ public class ArrowAttackHandler: BaseAttackHandler
 
 
         BaseStatus.Damage = 0;
-        BaseStatus.SpawnTime = 5;
+        BaseStatus.SpawnTime = 2;
         BaseStatus.HitCount = 1;
         BaseStatus.ProjectileCount = 1;
         BaseStatus.DestroyTime = 5;

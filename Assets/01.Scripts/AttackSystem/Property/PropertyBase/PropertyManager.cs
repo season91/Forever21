@@ -34,7 +34,7 @@ public class PropertyManager : MonoBehaviour
     }
 
 
-    public ProjectileProperty GetProperty(string _str)
+    public static ProjectileProperty GetProperty(string _str)
     {
         _str = _str.ToUpper();
 

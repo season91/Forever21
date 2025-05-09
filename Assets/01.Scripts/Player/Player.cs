@@ -19,6 +19,10 @@ public class Player : MonoBehaviour
     private void Update()
     {
         playerAttackSystem.Attack();
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            playerAttackSystem.AddProperty(AttackHandlerEnum.Arrow, PropertyManager.GetProperty(PropertyString.AddCounter));
+        }
     }
 
     private Vector2 movementDirection = Vector2.zero;

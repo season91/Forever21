@@ -15,7 +15,7 @@ public class AddCounterProperty : ProjectileProperty
 
     public void AddHitCounter(BaseAttackHandler _BaseAttack)
     {
-        _BaseAttack.CurrentStatus.Damage = _BaseAttack.CurrentStatus.Damage + Count;
+        _BaseAttack.CurrentStatus.HitCount = _BaseAttack.CurrentStatus.HitCount + Count;
     }
 
 }

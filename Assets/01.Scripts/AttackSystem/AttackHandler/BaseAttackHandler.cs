@@ -21,12 +21,16 @@ public class BaseAttackHandler : MonoBehaviour
 
     public ProjectileStatus CurrentStatus = new ProjectileStatus();
 
-    public Dictionary<PropertyEnum, List<ProjectileProperty>> Functions;
+    public Dictionary<PropertyEnum, List<ProjectileProperty>> Functions = new Dictionary<PropertyEnum, List<ProjectileProperty>>();
 
     public void AddProperty(ProjectileProperty _property) 
     {
         if (_property == null) return;
 
+        if (!Functions.ContainsKey(_property.EnumType))
+        {
+            Functions[_property.EnumType] = new List<ProjectileProperty>();  // 적절한 리스트 타입으로 초기화
+        }
         Functions[_property.EnumType].Add(_property);
 
         switch (_property.EnumType)

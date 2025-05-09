@@ -24,9 +24,9 @@ public class PlayerAttackSystem : MonoBehaviour
     }
 
 
-    public void PropertyAdd(AttackHandlerEnum _AttackHandlerEnum)
+    public void AddProperty(AttackHandlerEnum _AttackHandlerEnum, ProjectileProperty _Property)
     {
-        //AttackDictionary[_AttackHandlerEnum];
+        AttackDictionary[_AttackHandlerEnum].AddProperty(_Property);
     }
 
     public void Attack()
