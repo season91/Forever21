@@ -7,13 +7,10 @@ using UnityEngine;
 /// </summary>
 public class Projectile : MonoBehaviour
 {
-    public static List<ProjectileProperty> SpawnFunctions;
-    public static List<ProjectileProperty> PassiveFunctions;
-    public static List<ProjectileProperty> CollisionFunctions;
 
-    public int HitCount = 1;
+    protected AttackHandlerEnum Owner;
 
-    public int ProjectileCount = 1;
+    ProjectileStatus projectileStatus;
 
     [SerializeField] SpriteRenderer spriterenderer;
 
@@ -24,36 +21,24 @@ public class Projectile : MonoBehaviour
         collision2D = GetComponent<BoxCollider2D>();
     }
 
-
-    public void Spawn()
+    void Start()
     {
-        foreach(ProjectileProperty Property in SpawnFunctions)
-        {
-            Property.Excute(this);
-        }
+        projectileStatus = BaseAttack.AllAttackHandles[Owner].CurrentStatus;
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        foreach (ProjectileProperty Property in PassiveFunctions)
-        {
-            Property.Excute(this);
-        }
+        projectileStatus = BaseAttack.AllAttackHandles[Owner].CurrentStatus;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag(StringClass.Monster))
         {
-            foreach (ProjectileProperty Property in CollisionFunctions)
+            --projectileStatus.HitCount;
+            if (projectileStatus.HitCount == 0)
             {
-                Property.Excute(this);
-            }
-
-            --HitCount;
-            if (HitCount == 0)
-            {
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
     }

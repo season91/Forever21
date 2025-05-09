@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-enum PropertyEnum
+public enum PropertyEnum
 {
     None = 0,
     Passive,
@@ -15,15 +15,31 @@ enum PropertyEnum
 /// </summary>
 public class ProjectileProperty
 {
-    public delegate void PropertyDelegate(Projectile _projectile);
-    public PropertyDelegate Functions;
+    public PropertyEnum PropertyType;
+    public delegate void HandlerDelegate(BaseAttack _Handler);
+    public delegate void UpdateDelegate(Projectile _Projectile);
+    public delegate void CollisionDelegate();
+    public HandlerDelegate HandlerFunctions;
+    public UpdateDelegate UpdateFunctions;
+    public CollisionDelegate CollisionFunctions;
 
     public virtual void Init()
     {
 
     }
-    public void Excute(Projectile _projectile)
+
+    public void HanlderExcute(BaseAttack _Handler)
     {
-        Functions?.Invoke(_projectile);
+        HandlerFunctions?.Invoke(_Handler);
     }
+
+    public void UpdateExcute(Projectile _Projectile)
+    {
+        UpdateFunctions?.Invoke(_Projectile);
+    }
+
+    public void CollisionExcute() {
+        CollisionFunctions?.Invoke();
+    }
+
 }

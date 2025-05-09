@@ -7,12 +7,12 @@ public class CounterProperty : ProjectileProperty
     public override void Init()
     {
         base.Init();
-        Functions = AddHitCounter;
+        HandlerFunctions = AddHitCounter;
     }
 
-    public void AddHitCounter(Projectile _projectile)
+    public void AddHitCounter(BaseAttack _BaseAttack)
     {
-        _projectile.HitCount += 1;
+        ++_BaseAttack.CurrentStatus.HitCount;
     }
     
 }
