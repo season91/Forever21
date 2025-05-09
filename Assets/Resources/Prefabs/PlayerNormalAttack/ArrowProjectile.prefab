@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1516681726236083442}
   - component: {fileID: -7645104726533493726}
   - component: {fileID: -9169638692982053376}
-  - component: {fileID: -1013176328813002414}
   - component: {fileID: 7770788298326351571}
+  - component: {fileID: -8656896462440781504}
   m_Layer: 0
   m_Name: ArrowProjectile
   m_TagString: Projectile
@@ -128,22 +128,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTag: Monster
---- !u!114 &-1013176328813002414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7397796730913997726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6213520296bee748b983aef9d52573f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HitCount: 1
-  ProjectileCount: 1
-  spriterenderer: {fileID: 1516681726236083442}
-  collision2D: {fileID: 7770788298326351571}
 --- !u!61 &7770788298326351571
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -189,3 +173,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-8656896462440781504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7397796730913997726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e73fc712d53eca4092f5fc71e8bef7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriterenderer: {fileID: 1516681726236083442}
+  collision2D: {fileID: 7770788298326351571}

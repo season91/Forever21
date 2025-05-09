@@ -16,7 +16,7 @@ public enum PropertyEnum
 public class ProjectileProperty
 {
     public PropertyEnum PropertyType;
-    public delegate void HandlerDelegate(BaseAttack _Handler);
+    public delegate void HandlerDelegate(BaseAttackHandler _Handler);
     public delegate void UpdateDelegate(Projectile _Projectile);
     public delegate void CollisionDelegate();
     public HandlerDelegate HandlerFunctions;
@@ -28,7 +28,7 @@ public class ProjectileProperty
 
     }
 
-    public void HanlderExcute(BaseAttack _Handler)
+    public void HanlderExcute(BaseAttackHandler _Handler)
     {
         HandlerFunctions?.Invoke(_Handler);
     }

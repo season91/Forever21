@@ -16,21 +16,21 @@ public class Projectile : MonoBehaviour
 
     [SerializeField] BoxCollider2D collision2D;
 
-
-
-    private void Awake()
+    private void Reset()
     {
         collision2D = GetComponent<BoxCollider2D>();
+        spriterenderer = gameObject.GetComponent<SpriteRenderer>();
     }
+
 
     void Start()
     {
-        projectileStatus = BaseAttack.AllAttackHandles[Owner].CurrentStatus;
+        projectileStatus = BaseAttackHandler.AllAttackHandles[Owner].CurrentStatus;
     }
 
     private void OnEnable()
     {
-        projectileStatus = BaseAttack.AllAttackHandles[Owner].CurrentStatus;
+        projectileStatus = BaseAttackHandler.AllAttackHandles[Owner].CurrentStatus;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -314,6 +314,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 1991953904}
   smoothSpeed: 5
+--- !u!1 &593874897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 593874899}
+  - component: {fileID: 593874898}
+  m_Layer: 0
+  m_Name: resourcemanager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &593874898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593874897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb221fabd9488a4a87b9ee2e2dcc304, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &593874899
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593874897}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.6212978, y: 0.83684474, z: 0.0350017}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1991953903
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,6 +374,7 @@ GameObject:
   - component: {fileID: 1991953907}
   - component: {fileID: 1991953909}
   - component: {fileID: 1991953908}
+  - component: {fileID: 1991953913}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -383,7 +428,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  playerInput: {fileID: 0}
+  playerInput: {fileID: 1991953907}
 --- !u!114 &1991953907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -517,6 +562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterRenderer: {fileID: 239718557}
+  projectileHandler: {fileID: 1991953913}
 --- !u!114 &1991953912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,9 +581,22 @@ MonoBehaviour:
   currentExp: 0
   expToNextLevel: 100
   expGrowthRate: 1.2
+--- !u!114 &1991953913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991953903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e0b5946a9b98d74e944e831a5b51869, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 1991953904}
+  - {fileID: 593874899}

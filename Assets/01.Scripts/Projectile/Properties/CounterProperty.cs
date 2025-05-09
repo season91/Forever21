@@ -12,7 +12,7 @@ public class CounterProperty : ProjectileProperty
 
     int Count = 1;
 
-    public void AddHitCounter(BaseAttack _BaseAttack)
+    public void AddHitCounter(BaseAttackHandler _BaseAttack)
     {
         _BaseAttack.CurrentStatus.HitCount += Count;
     }

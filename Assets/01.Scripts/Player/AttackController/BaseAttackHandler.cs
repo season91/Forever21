@@ -8,11 +8,14 @@ public enum AttackHandlerEnum
     Dager = 1,
 }
 
-public class BaseAttack : MonoBehaviour
+public class BaseAttackHandler : MonoBehaviour
 {
     protected GameObject ProjectilePrefab;
 
-    public static Dictionary<AttackHandlerEnum, BaseAttack> AllAttackHandles;
+    protected AttackHandlerEnum EnumType;
+
+    public static Dictionary<AttackHandlerEnum, BaseAttackHandler> AllAttackHandles 
+        = new Dictionary<AttackHandlerEnum, BaseAttackHandler>();
 
     public ProjectileStatus BaseStatus = new ProjectileStatus();
 
@@ -30,13 +33,8 @@ public class BaseAttack : MonoBehaviour
         Functions[_property.PropertyType].Add(_property);
     }
 
-    public List<ProjectileProperty> SpawnFunctions;
-    public List<ProjectileProperty> PassiveFunctions;
-    public List<ProjectileProperty> CollisionFunctions;
-
     public virtual void Init()
     {
-
     }
 
     public void PassiveUpdate()
