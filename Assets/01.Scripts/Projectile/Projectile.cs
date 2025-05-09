@@ -7,11 +7,13 @@ using UnityEngine;
 /// </summary>
 public class Projectile : MonoBehaviour
 {
-    List<ProjectileProperty> SpawnFunctions;
-    List<ProjectileProperty> PassiveFunctions;
-    List<ProjectileProperty> CollisionFunctions;
+    public static List<ProjectileProperty> SpawnFunctions;
+    public static List<ProjectileProperty> PassiveFunctions;
+    public static List<ProjectileProperty> CollisionFunctions;
 
     public int HitCount = 1;
+
+    public int ProjectileCount = 1;
 
     [SerializeField] SpriteRenderer spriterenderer;
 
