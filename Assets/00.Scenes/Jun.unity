@@ -368,8 +368,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b434294423d423848bcb2f0df59a5a1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
-  targetTag: Player
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -679,6 +677,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 100
+  level: 1
+  currentExp: 0
+  expToNextLevel: 100
+  expGrowthRate: 1.2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
