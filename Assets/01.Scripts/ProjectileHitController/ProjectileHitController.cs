@@ -7,10 +7,7 @@ public class ProjectileHitController : MonoBehaviour
 
     private IDamageDealer damageDealer;
 
-    /// <summary>
-    /// 발사체 생성 후 호출하여 공격력을 설정합니다
-    /// </summary>
-    public void SetDamageDealer(IDamageDealer dealer)
+    public void SetDamageDealer(IDamageDealer dealer) // 발사체 생성 후 호출하여 공격력 설정
     {
         damageDealer = dealer;
     }
@@ -23,13 +20,13 @@ public class ProjectileHitController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.CompareTag(targetTag)) return;
-        if (damageDealer == null)
+        if (!other.CompareTag(targetTag)) return; // 방어 코딩
+        if (damageDealer == null) // 널 예외 처리
         {
             Debug.LogError($"[ProjectileHitController] {gameObject.name}에 IDamageDealer가 설정되지 않았습니다.");
             return;
         }
-        if (other.TryGetComponent<IDamageable>(out var target))
+        if (other.TryGetComponent<IDamageable>(out var target)) // IDamageable 있는 
         {
             int dmg = damageDealer.GetDamage();
             target.TakeDamage(dmg);
