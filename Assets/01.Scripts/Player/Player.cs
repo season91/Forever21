@@ -14,7 +14,12 @@ public class Player : MonoBehaviour
     private PlayerStatus status;
 
     //유성민 추가
-    ProjectileHandler projectileHandler;
+    [SerializeField] ProjectileHandler projectileHandler;
+
+    private void Update()
+    {
+        projectileHandler.Attack();
+    }
 
     private Vector2 movementDirection = Vector2.zero;
     private Vector2 lookDirection = Vector2.zero;
@@ -32,6 +37,9 @@ public class Player : MonoBehaviour
 
         controller = GetComponent<PlayerController>();
         controller.playerInput = playerInput;
+
+        //유성민이 생성
+        projectileHandler = GetComponent<ProjectileHandler>();
     }
 
     private void Awake()

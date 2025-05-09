@@ -10,9 +10,11 @@ public class CounterProperty : ProjectileProperty
         HandlerFunctions = AddHitCounter;
     }
 
+    int Count = 1;
+
     public void AddHitCounter(BaseAttack _BaseAttack)
     {
-        ++_BaseAttack.CurrentStatus.HitCount;
+        _BaseAttack.CurrentStatus.HitCount += Count;
     }
     
 }
