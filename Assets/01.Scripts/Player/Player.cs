@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     [SerializeField] private SpriteRenderer characterRenderer;
 
     private PlayerController controller;
+    private PlayerStatus status;
+
     private Vector2 movementDirection = Vector2.zero;
     private Vector2 lookDirection = Vector2.zero;
 
@@ -51,6 +53,8 @@ public class Player : MonoBehaviour
         controller.move.performed += ctx => Move(); // 이동
         controller.move.canceled += ctx => Stop(); // 이동 중지
         controller.look.performed += ctx => Rotate(); // 회전
+
+        status = GetComponent<PlayerStatus>();
     }
 
     private void Move()
@@ -90,27 +94,19 @@ public class Player : MonoBehaviour
         characterRenderer.flipX = isLeft;
     }
 
-    // 경험치 호출 함수
-    public void GetExp()
+    // 경험치 획득 처리
+    public void GetExp(int exp)
     {
-
+        status.GainExp(exp);
     }
 
     // 몬스터 충돌 처리
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // PlayetStatus 피격 처리 호출 에정
-        Debug.Log("몬스터 충돌! ");
-    }
-
-
-    // 아이템 충돌 처리
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // PlayetStatus 경험치 획득 처리 예정
-        if (collision.CompareTag(StringClass.Item))
+        if (collision.gameObject.CompareTag(StringClass.Monster))
         {
-            Debug.Log("아이템 충돌! ");
+            status.TakeDamage(20);
         }
     }
 
