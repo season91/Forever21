@@ -9,6 +9,6 @@ public class ExpItem : InteractiveItem
 
     private void Start()
     {
-        
+        onCollisionEnter += Player.Instance.GetExp;
     }
 }
