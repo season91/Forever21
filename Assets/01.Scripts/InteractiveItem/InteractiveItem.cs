@@ -25,7 +25,7 @@ public class InteractiveItem : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == StringClass.Player)
+        if(collision.CompareTag(StringClass.Player) == true)
         {
             onCollisionEnter(collision);
         }   
