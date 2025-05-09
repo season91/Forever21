@@ -13,7 +13,11 @@ public class PlayerController : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         move = playerInput.actions["Move"];
         look = playerInput.actions["Look"];
+    }
 
+    // 모든 초기화 되고 시작
+    private void Start()
+    {
         move.Enable();
         look.Enable();
     }
