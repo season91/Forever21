@@ -370,7 +370,7 @@ GameObject:
   - component: {fileID: 110792992832063138}
   - component: {fileID: 2151105762866986968}
   m_Layer: 5
-  m_Name: Group_Buttons
+  m_Name: Layout_Buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
