@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,14 +13,19 @@ public class Player : MonoBehaviour
     private Vector2 movementDirection = Vector2.zero;
     private Vector2 lookDirection = Vector2.zero;
 
-    private void Reset()
+    protected void Reset()
     {
         // characterRenderer는 Player Object에서 사용할 Player 스크립트의 변수임
         // characterRenderer에 Player 자식 MainSprite를 넣어주는 코드
         characterRenderer = GetComponentInChildren<SpriteRenderer>();
+        InputActionAsset inputAsset = Resources.Load<InputActionAsset>("Input/PlayerInputControls");
+
+        // PlayerInput에 할당
+        PlayerInput playerInput = GetComponent<PlayerInput>();
+        playerInput.actions = inputAsset;
 
         controller = GetComponent<PlayerController>();
-        controller.playerInput = GetComponent<PlayerInput>();
+        controller.playerInput = playerInput;
     }
 
     private void Start()
@@ -29,7 +35,6 @@ public class Player : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         controller = GetComponent<PlayerController>(); 
         controller.Init(); // 명시적 초기화
-
 
         controller.move.performed += ctx => Move(); // 이동
         controller.move.canceled += ctx => Stop(); // 이동 중지
