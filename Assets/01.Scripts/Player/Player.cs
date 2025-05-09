@@ -1,9 +1,10 @@
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    public static Player Instance;
+
     private Camera _camera;
     private Rigidbody2D _rigidbody;
 
@@ -28,6 +29,17 @@ public class Player : MonoBehaviour
         controller.playerInput = playerInput;
     }
 
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            return;
+        }
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
     private void Start()
     {
         _camera = Camera.main;
@@ -77,4 +89,29 @@ public class Player : MonoBehaviour
         bool isLeft = Mathf.Abs(rotZ) > 90f;
         characterRenderer.flipX = isLeft;
     }
+
+    // 경험치 호출 함수
+    public void GetExp()
+    {
+
+    }
+
+    // 몬스터 충돌 처리
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // PlayetStatus 피격 처리 호출 에정
+        Debug.Log("몬스터 충돌! ");
+    }
+
+
+    // 아이템 충돌 처리
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // PlayetStatus 경험치 획득 처리 예정
+        if (collision.CompareTag(StringClass.Item))
+        {
+            Debug.Log("아이템 충돌! ");
+        }
+    }
+
 }
