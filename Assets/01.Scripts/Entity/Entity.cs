@@ -53,6 +53,6 @@ public class Entity : MonoBehaviour, IDamageable
 
     protected void OnDestroy()
     {
-        OnDead.Invoke();
+        OnDead?.Invoke();
     }
 }
