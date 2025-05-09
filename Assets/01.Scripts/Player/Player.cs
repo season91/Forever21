@@ -11,6 +11,13 @@ public class Player : MonoBehaviour
     private Vector2 movementDirection = Vector2.zero;
     private Vector2 lookDirection = Vector2.zero;
 
+    private void Reset()
+    {
+        // characterRenderer는 Player Object에서 사용할 Player 스크립트의 변수임
+        // characterRenderer에 Player 자식 MainSprite를 넣어주는 코드
+        characterRenderer = GetComponentInChildren<SpriteRenderer>();
+    }
+
     private void Start()
     {
         _camera = Camera.main;
