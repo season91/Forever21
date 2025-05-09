@@ -74,6 +74,8 @@ public class PoolManager : MonoBehaviour
         InitPoolDictionary();
     }
 
+    // ===========================================================
+
     #region Init
     // Prefab 이름 저장
     // 이유: Resource Manager에 key값으로 Prefab의 이름을 넣어줘야 함.
@@ -160,6 +162,7 @@ public class PoolManager : MonoBehaviour
 
     #endregion
 
+    // ===========================================================
 
     /// <summary>
     /// 지정한 인덱스에 해당하는 Object를 풀에서 가져옵니다.
