@@ -13,6 +13,18 @@ public class Player : MonoBehaviour
     private PlayerController controller;
     private PlayerStatus status;
 
+    //유성민 추가
+    [SerializeField] PlayerAttackSystem playerAttackSystem;
+
+    private void Update()
+    {
+        playerAttackSystem.Attack();
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            playerAttackSystem.AddProperty(AttackHandlerEnum.Arrow, PropertyManager.GetProperty(PropertyString.AddCounter));
+        }
+    }
+
     private Vector2 movementDirection = Vector2.zero;
     private Vector2 lookDirection = Vector2.zero;
 
@@ -29,6 +41,9 @@ public class Player : MonoBehaviour
 
         controller = GetComponent<PlayerController>();
         controller.playerInput = playerInput;
+
+        //유성민이 생성
+        playerAttackSystem = GetComponent<PlayerAttackSystem>();
     }
 
     private void Awake()
@@ -55,6 +70,9 @@ public class Player : MonoBehaviour
         controller.look.performed += ctx => Rotate(); // 회전
 
         status = GetComponent<PlayerStatus>();
+
+        // 유성민이 추가함
+        playerAttackSystem.Init();
     }
 
     private void Move()
