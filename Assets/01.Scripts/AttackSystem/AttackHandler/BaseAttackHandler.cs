@@ -26,7 +26,26 @@ public class BaseAttackHandler : MonoBehaviour
     public void AddProperty(ProjectileProperty _property) 
     {
         if (_property == null) return;
+
         Functions[_property.EnumType].Add(_property);
+
+        switch (_property.EnumType)
+        {
+            case PropertyEnum.None:
+                break;
+            case PropertyEnum.Handler:
+                HandlerUpdate();
+                break;
+            case PropertyEnum.Update:
+                PassiveUpdate();
+                break;
+            case PropertyEnum.Collision:
+                CollisionUpdate();
+                break;
+            default:
+                break;
+        }
+
     }
 
     public virtual void Init()
@@ -44,7 +63,7 @@ public class BaseAttackHandler : MonoBehaviour
         //충돌 시 작동될 함수
     }
 
-    public void SpawnUpdate()
+    public void HandlerUpdate()
     {
         foreach(ProjectileProperty property in Functions[PropertyEnum.Handler])
         {

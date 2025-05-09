@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitCounterProperty : ProjectileProperty
+public class AddDamageCounter : ProjectileProperty
 {
     public override void Init()
     {

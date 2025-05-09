@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class PlayerAttackSystem : MonoBehaviour
 {
-    List<BaseAttackHandler> attackList;
+    Dictionary<AttackHandlerEnum, BaseAttackHandler> AttackDictionary;
 
     private void Awake()
     {
-        //임시로 넣은 것
-        attackList = new List<BaseAttackHandler>();
-        attackList.Add(gameObject.AddComponent<ArrowAttackHandler>());
+        AttackDictionary = new Dictionary<AttackHandlerEnum, BaseAttackHandler>();
+        AttackDictionary.Add(AttackHandlerEnum.Arrow, gameObject.AddComponent<ArrowAttackHandler>());
     }
 
     bool IsInit = false;
@@ -18,10 +17,16 @@ public class PlayerAttackSystem : MonoBehaviour
     {
         if (IsInit == true) return;
         IsInit = true;
-        foreach (BaseAttackHandler attack in attackList)
+        foreach (KeyValuePair<AttackHandlerEnum, BaseAttackHandler> Pair in AttackDictionary)
         {
-            attack.Init();
+            Pair.Value.Init();
         }
+    }
+
+
+    public void PropertyAdd(AttackHandlerEnum _AttackHandlerEnum)
+    {
+        //AttackDictionary[_AttackHandlerEnum];
     }
 
     public void Attack()
@@ -33,9 +38,9 @@ public class PlayerAttackSystem : MonoBehaviour
         }
 #endif
 
-        foreach (BaseAttackHandler attack in attackList)
+        foreach (KeyValuePair<AttackHandlerEnum, BaseAttackHandler> Pair in AttackDictionary)
         {
-            attack.Attack();
+            Pair.Value.Attack();
         }
     }
 }

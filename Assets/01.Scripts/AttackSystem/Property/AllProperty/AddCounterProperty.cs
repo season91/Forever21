@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CounterProperty : ProjectileProperty
+public class AddCounterProperty : ProjectileProperty
 {
     public override void Init()
     {

@@ -5,6 +5,7 @@ using UnityEngine;
 public static class PropertyString
 {
     public static string AddCounter = "COUNTERPROPERTY";
+    public static string AddDamage = "ADDDAMAGE";
 }
 
 public class PropertyManager : MonoBehaviour
@@ -22,8 +23,8 @@ public class PropertyManager : MonoBehaviour
         if (IsInit == true) return;
 
         IsInit = true;
-        //AllPropertys[PropertyString.AddCounter] = new CounterProperty();
-        AllPropertys[PropertyString.AddCounter] = new HitCounterProperty();
+        AllPropertys[PropertyString.AddCounter] = new AddCounterProperty();
+        AllPropertys[PropertyString.AddDamage] = new AddDamageCounter();
 
 
         foreach (KeyValuePair<string, ProjectileProperty> kvp in AllPropertys)
