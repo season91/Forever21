@@ -8,13 +8,14 @@ public class CounterProperty : ProjectileProperty
     {
         base.Init();
         HandlerFunctions = AddHitCounter;
+        EnumType = PropertyEnum.Handler;
     }
 
     int Count = 1;
 
     public void AddHitCounter(BaseAttackHandler _BaseAttack)
     {
-        _BaseAttack.CurrentStatus.HitCount += Count;
+        _BaseAttack.CurrentStatus.Damage = _BaseAttack.CurrentStatus.Damage + Count;
     }
-    
+
 }

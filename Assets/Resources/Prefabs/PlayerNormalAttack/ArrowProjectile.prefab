@@ -187,3 +187,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriterenderer: {fileID: 1516681726236083442}
   collision2D: {fileID: 7770788298326351571}
+  _rigidbody2D: {fileID: -7645104726533493726}
+  Direction: {x: 0, y: 0}

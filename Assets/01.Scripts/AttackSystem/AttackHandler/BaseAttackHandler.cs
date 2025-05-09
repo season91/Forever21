@@ -21,20 +21,17 @@ public class BaseAttackHandler : MonoBehaviour
 
     public ProjectileStatus CurrentStatus = new ProjectileStatus();
 
-
-    public Vector2 Position;
-    public Vector2 Direction;
-
     public Dictionary<PropertyEnum, List<ProjectileProperty>> Functions;
 
     public void AddProperty(ProjectileProperty _property) 
     {
         if (_property == null) return;
-        Functions[_property.PropertyType].Add(_property);
+        Functions[_property.EnumType].Add(_property);
     }
 
     public virtual void Init()
     {
+
     }
 
     public void PassiveUpdate()
@@ -49,7 +46,11 @@ public class BaseAttackHandler : MonoBehaviour
 
     public void SpawnUpdate()
     {
-
+        foreach(ProjectileProperty property in Functions[PropertyEnum.Handler])
+        {
+            CurrentStatus.CopyValue(BaseStatus);
+            property.HandlerFunctions(this);
+        }
     }
 
     public virtual void AllReset()
@@ -64,9 +65,7 @@ public class BaseAttackHandler : MonoBehaviour
         {
             // object pool의 Get으로 가져와야함
             GameObject obj = Instantiate(ProjectilePrefab);
-            obj.transform.position = Position;
-            float angle = Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg;
-            obj.transform.rotation = Quaternion.Euler(0, 0, angle);
+            obj.transform.position = Player.Instance.transform.position;
             CurrentStatus.SpawnTime = BaseStatus.SpawnTime;
         }
         else

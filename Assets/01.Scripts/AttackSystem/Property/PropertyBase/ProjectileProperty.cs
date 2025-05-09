@@ -5,17 +5,14 @@ using UnityEngine;
 public enum PropertyEnum
 {
     None = 0,
-    Passive,
-    Spawn,
-    Hit,
+    Handler,
+    Update,
+    Collision,
 }
 
-/// <summary>
-/// ≈ıªÁ√º delegate
-/// </summary>
 public class ProjectileProperty
 {
-    public PropertyEnum PropertyType;
+    public PropertyEnum EnumType;
     public delegate void HandlerDelegate(BaseAttackHandler _Handler);
     public delegate void UpdateDelegate(Projectile _Projectile);
     public delegate void CollisionDelegate();

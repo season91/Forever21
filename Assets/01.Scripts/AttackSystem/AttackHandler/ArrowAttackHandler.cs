@@ -11,6 +11,15 @@ public class ArrowAttackHandler: BaseAttackHandler
 
         ProjectilePrefab = ResourceManager.Instance.GetResource<GameObject>("ArrowProjectile");
 
+
+        BaseStatus.Damage = 0;
+        BaseStatus.SpawnTime = 5;
+        BaseStatus.HitCount = 1;
+        BaseStatus.ProjectileCount = 1;
+        BaseStatus.DestroyTime = 5;
+        BaseStatus.Speed = 5;
+
+        CurrentStatus.CopyValue(BaseStatus);
     }
 
 }

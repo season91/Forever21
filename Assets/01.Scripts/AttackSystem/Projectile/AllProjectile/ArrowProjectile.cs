@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ArrowProjectile : Projectile
 {
+    
     private void Awake()
     {
         Owner = AttackHandlerEnum.Arrow;
     }
-
 
 }

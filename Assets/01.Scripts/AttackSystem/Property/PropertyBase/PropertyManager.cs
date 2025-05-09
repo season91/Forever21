@@ -9,7 +9,12 @@ public static class PropertyString
 
 public class PropertyManager : MonoBehaviour
 {
-    public static Dictionary<string, ProjectileProperty> AllPropertys;
+    public static Dictionary<string, ProjectileProperty> AllPropertys = new Dictionary<string, ProjectileProperty>();
+
+    private void Start()
+    {
+        Init();
+    }
 
     bool IsInit = false;
     public void Init()
@@ -17,7 +22,8 @@ public class PropertyManager : MonoBehaviour
         if (IsInit == true) return;
 
         IsInit = true;
-        AllPropertys[PropertyString.AddCounter] = new CounterProperty();
+        //AllPropertys[PropertyString.AddCounter] = new CounterProperty();
+        AllPropertys[PropertyString.AddCounter] = new HitCounterProperty();
 
 
         foreach (KeyValuePair<string, ProjectileProperty> kvp in AllPropertys)
