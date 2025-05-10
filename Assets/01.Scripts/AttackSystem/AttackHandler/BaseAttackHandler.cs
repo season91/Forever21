@@ -6,6 +6,9 @@ public enum AttackHandlerEnum
 {
     Arrow = 0,
     Dager = 1,
+    Axe = 2 ,
+    Sword = 3,
+    Hammer = 4
 }
 
 public class BaseAttackHandler : MonoBehaviour
@@ -13,8 +16,6 @@ public class BaseAttackHandler : MonoBehaviour
     protected GameObject ProjectilePrefab;
 
     protected AttackHandlerEnum EnumType;
-
-
 
     public ProjectileStatus BaseStatus = new ProjectileStatus();
 

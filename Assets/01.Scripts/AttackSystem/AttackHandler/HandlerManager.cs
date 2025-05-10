@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,8 +14,12 @@ public class HandlerManager : MonoBehaviour
     {
         if (IsInit) return;
         IsInit = true;
-        AllAttackHandles.Add(AttackHandlerEnum.Arrow, gameObject.AddComponent<ArrowAttackHandler>());
 
+        AllAttackHandles.Add(AttackHandlerEnum.Arrow, gameObject.AddComponent<ArrowAttackHandler>());
+        AllAttackHandles.Add(AttackHandlerEnum.Dager, gameObject.AddComponent<DagerAttackHandler>());
+        AllAttackHandles.Add(AttackHandlerEnum.Axe, gameObject.AddComponent<AxeAttackHandler>());
+        AllAttackHandles.Add(AttackHandlerEnum.Sword, gameObject.AddComponent<SwordAttackHandler>());
+        AllAttackHandles.Add(AttackHandlerEnum.Hammer, gameObject.AddComponent<HammerAttackHandler>());
 
         foreach (KeyValuePair<AttackHandlerEnum, BaseAttackHandler> pair in AllAttackHandles)
         {

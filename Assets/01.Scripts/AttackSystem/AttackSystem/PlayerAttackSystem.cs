@@ -57,4 +57,10 @@ public class PlayerAttackSystem : MonoBehaviour
             Pair.Value.Attack();
         }
     }
+
+    // 공격 수단 추가
+    public void AddAttack(AttackHandlerEnum type)
+    {
+        AttackDictionary.Add(type, AttackSystemManager.instance.GetHandler(type));
+    }
 }
