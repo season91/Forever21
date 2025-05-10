@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
         //debug
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            playerAttackSystem.AddProperty(AttackHandlerEnum.Arrow, PropertyManager.GetProperty(PropertyString.AddCounter));
+            playerAttackSystem.AddProperty(AttackHandlerEnum.Arrow, AttackSystemManager.instance.GetProperty(PropertyString.AddCounter));
         }
     }
 
@@ -80,8 +80,6 @@ public class Player : MonoBehaviour
 
         status = GetComponent<PlayerStatus>();
 
-        // 유성민이 추가함
-        playerAttackSystem.Init();
     }
 
     private void Move()

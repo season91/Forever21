@@ -5,17 +5,22 @@ using Unity.VisualScripting.ReorderableList;
 using UnityEditor;
 using UnityEngine;
 
-public class ResourceManager : MonoBehaviour
+public class ResourceManager
 {
     static ResourceManager instance = null;
 
+
+    //monobehaviour면, 만약에 attacksystem이 먼저 awawke 에서 초기화
+    //그때 instantce가 없음
     public static ResourceManager Instance
     {
         get
         {
             if (null == instance)
             {
-                return null;
+                instance = new ResourceManager();
+                instance.ResourceSearch();
+                return instance;
             }
             return instance;
         }
@@ -24,21 +29,7 @@ public class ResourceManager : MonoBehaviour
     Dictionary<string, Object> resources = new Dictionary<string, Object>();
     string ResourcesPath;
 
-    private void Awake()
-    {
-        if (null == instance)
-        {
-            instance = this;
-
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
-    }
-
-    private void Start()
+    private void ResourceSearch()
     {
         string AssetsFolderPath = Application.dataPath;
         ResourcesPath = Path.Combine(AssetsFolderPath, "Resources");

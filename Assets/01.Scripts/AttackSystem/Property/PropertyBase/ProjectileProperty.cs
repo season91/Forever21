@@ -12,7 +12,7 @@ public enum PropertyEnum
 
 public class ProjectileProperty
 {
-    public PropertyEnum EnumType;
+    public PropertyEnum EnumType { get; protected set; }
     public delegate void HandlerDelegate(BaseAttackHandler _Handler);  // 상수 업그레이드
     public delegate void UpdateDelegate(Projectile _Projectile);  // 상시 업그레이드
     public delegate void CollisionDelegate();   //충돌 업그레이드
