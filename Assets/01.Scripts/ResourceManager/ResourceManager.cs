@@ -9,6 +9,9 @@ public class ResourceManager
 {
     static ResourceManager instance = null;
 
+
+    //monobehaviour면, 만약에 attacksystem이 먼저 awawke 에서 초기화
+    //그때 instantce가 없음
     public static ResourceManager Instance
     {
         get

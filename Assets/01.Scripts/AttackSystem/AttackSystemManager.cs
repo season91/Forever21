@@ -38,6 +38,9 @@ public class AttackSystemManager : MonoBehaviour
         propertyManager.Init();
     }
 
+    //보지마셈 나머지는
+    // enum이 있는 이유는 해당 property가 handle용인지 충돌용인지 업데이트용인지
+    // 관통력증가, 데미지증가, 번개생성  <<<<---
     public ProjectileProperty GetProperty(string _str)
     {
         return propertyManager.GetProperty(_str);
