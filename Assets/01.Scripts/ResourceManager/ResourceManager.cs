@@ -7,22 +7,39 @@ using UnityEngine;
 
 public class ResourceManager : MonoBehaviour
 {
-    static ResourceManager Instance;
+    static ResourceManager instance = null;
+
+    public static ResourceManager Instance
+    {
+        get
+        {
+            if (null == instance)
+            {
+                return null;
+            }
+            return instance;
+        }
+    }
 
     Dictionary<string, Object> resources = new Dictionary<string, Object>();
-    public string ResourcesPath;
+    string ResourcesPath;
+
+    private void Awake()
+    {
+        if (null == instance)
+        {
+            instance = this;
+
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
     private void Start()
     {
-        if(Instance != null)
-        {
-            Destroy(this);
-        }
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-
         string AssetsFolderPath = Application.dataPath;
         ResourcesPath = Path.Combine(AssetsFolderPath, "Resources");
 

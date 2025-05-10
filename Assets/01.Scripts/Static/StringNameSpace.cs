@@ -8,4 +8,5 @@ public static class StringClass
     public const string Border = "Border";
     public const string Item = "Item";
     public const string Monster = "Monster";
+    public const string Projectile = "Projectile";
 }

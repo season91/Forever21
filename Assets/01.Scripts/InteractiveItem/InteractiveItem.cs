@@ -16,7 +16,7 @@ public class InteractiveItem : MonoBehaviour
     BoxCollider2D boxColider2D;
     SpriteRenderer spriteRenderer;
 
-    protected delegate void OnCollisionEnter(Collider2D other);
+    protected delegate void OnCollisionEnter();
 
     protected OnCollisionEnter onCollisionEnter;
 
@@ -30,10 +30,8 @@ public class InteractiveItem : MonoBehaviour
     {
         if(collision.CompareTag(StringClass.Player) == true)
         {
-            onCollisionEnter(collision);
+            onCollisionEnter();
+            gameObject.SetActive(false);
         }   
     }
-
-
-
 }
