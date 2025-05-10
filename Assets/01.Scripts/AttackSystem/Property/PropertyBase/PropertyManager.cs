@@ -10,7 +10,7 @@ public static class PropertyString
 
 public class PropertyManager : MonoBehaviour
 {
-    public static Dictionary<string, ProjectileProperty> AllPropertys = new Dictionary<string, ProjectileProperty>();
+    public Dictionary<string, ProjectileProperty> AllPropertys = new Dictionary<string, ProjectileProperty>();
     //ui에서 모든 특성을 띄워야할거아닙니까
     //그래서 이미 생성이 되어야 쓰던 말든 하니까
 
@@ -37,7 +37,7 @@ public class PropertyManager : MonoBehaviour
     }
 
 
-    public static ProjectileProperty GetProperty(string _str)
+    public ProjectileProperty GetProperty(string _str)
     {
         _str = _str.ToUpper();
 

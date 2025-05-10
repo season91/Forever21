@@ -23,7 +23,12 @@ public class PlayerAttackSystem : MonoBehaviour
         //arrow attack을 만약 다른 친구들이 접근해야한다고 쳤을 때
         //get component로 접근하면 곤란하겠죠? 
         //그래서 추가한 후 자료구조까지 해줬습니다.
-        AttackDictionary.Add(AttackHandlerEnum.Arrow, gameObject.AddComponent<ArrowAttackHandler>());
+        
+    }
+
+    private void Start()
+    {
+        AttackDictionary.Add(AttackHandlerEnum.Arrow, AttackSystemManager.instance.GetHandler(AttackHandlerEnum.Arrow));
     }
 
 
@@ -34,16 +39,6 @@ public class PlayerAttackSystem : MonoBehaviour
     //player -> attacksystem -> handler   <<<<
 
 
-    bool IsInit = false;
-    public void Init()
-    {
-        if (IsInit == true) return;
-        IsInit = true;
-        foreach (KeyValuePair<AttackHandlerEnum, BaseAttackHandler> Pair in AttackDictionary)
-        {
-            Pair.Value.Init();
-        }
-    }
 
 
     public void AddProperty(AttackHandlerEnum _AttackHandlerEnum, ProjectileProperty _Property)
@@ -54,10 +49,7 @@ public class PlayerAttackSystem : MonoBehaviour
     public void Attack()
     {
 #if UNITY_EDITOR
-        if (IsInit == false)
-        {
-            Debug.Log("PlayerAttackSystem Initialize is not work");
-        }
+
 #endif
 
         foreach (KeyValuePair<AttackHandlerEnum, BaseAttackHandler> Pair in AttackDictionary)

@@ -5,7 +5,7 @@ using Unity.VisualScripting.ReorderableList;
 using UnityEditor;
 using UnityEngine;
 
-public class ResourceManager : MonoBehaviour
+public class ResourceManager
 {
     static ResourceManager instance = null;
 
@@ -15,7 +15,9 @@ public class ResourceManager : MonoBehaviour
         {
             if (null == instance)
             {
-                return null;
+                instance = new ResourceManager();
+                instance.ResourceSearch();
+                return instance;
             }
             return instance;
         }
@@ -24,21 +26,7 @@ public class ResourceManager : MonoBehaviour
     Dictionary<string, Object> resources = new Dictionary<string, Object>();
     string ResourcesPath;
 
-    private void Awake()
-    {
-        if (null == instance)
-        {
-            instance = this;
-
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
-    }
-
-    private void Start()
+    private void ResourceSearch()
     {
         string AssetsFolderPath = Application.dataPath;
         ResourcesPath = Path.Combine(AssetsFolderPath, "Resources");

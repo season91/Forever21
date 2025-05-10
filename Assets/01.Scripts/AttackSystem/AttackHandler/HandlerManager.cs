@@ -1,0 +1,34 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class HandlerManager : MonoBehaviour
+{
+    //객체없이 활용할 수 있는 전역 데이터
+    private Dictionary<AttackHandlerEnum, BaseAttackHandler> AllAttackHandles
+        = new Dictionary<AttackHandlerEnum, BaseAttackHandler>();
+
+    bool IsInit = false;
+    public void Init()
+    {
+        if (IsInit) return;
+        IsInit = true;
+        AllAttackHandles.Add(AttackHandlerEnum.Arrow, gameObject.AddComponent<ArrowAttackHandler>());
+
+
+        foreach (KeyValuePair<AttackHandlerEnum, BaseAttackHandler> pair in AllAttackHandles)
+        {
+            pair.Value.Init();
+        }
+    }
+
+    public BaseAttackHandler GetAttackHandle(AttackHandlerEnum attackHandler)
+    {
+        if (AllAttackHandles.TryGetValue(attackHandler, out BaseAttackHandler value))
+        {
+            return value;
+        }
+        return null;
+    }
+
+}

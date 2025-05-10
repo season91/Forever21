@@ -14,9 +14,7 @@ public class BaseAttackHandler : MonoBehaviour
 
     protected AttackHandlerEnum EnumType;
 
-    //객체없이 활용할 수 있는 전역 데이터
-    public static Dictionary<AttackHandlerEnum, BaseAttackHandler> AllAttackHandles 
-        = new Dictionary<AttackHandlerEnum, BaseAttackHandler>();
+
 
     public ProjectileStatus BaseStatus = new ProjectileStatus();
 

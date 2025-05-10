@@ -29,7 +29,7 @@ public class Projectile : MonoBehaviour
 
     private void OnEnable()
     {
-        projectileStatus.CopyValue(BaseAttackHandler.AllAttackHandles[Owner].CurrentStatus);
+        projectileStatus.CopyValue(AttackSystemManager.instance.GetHandler(Owner).CurrentStatus);
         transform.rotation = Player.Instance.transform.rotation;
         Direction = transform.up;
     }
