@@ -10,7 +10,18 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-#if UNITY_EDITOR  // debug window 전용 함수 및 변수
+
+    // playerAttackSystem은 private여서 debug editor가 접근을 할 수 없다. 하지만 접근을 해야 디버깅이 가능한데, 
+
+    // 디버깅 전용 함수를 일부로 만든거시다. 실제로 게임을 빌드(exe파일로 변환) 하기 전에 삭제하면 됨
+
+    // 해당 Debug_GetPlayerAttackSystem() 는 접근할 수 없는 멤버변수를 public으로 반환해주는 함수이고
+
+    // 이런 함수들은 머리가 깨져도 debug window가 아닌 다른 곳에서 호출하면 꿀밤 5억대를 맞아야하니
+
+    // 절대 그런일이 생기지 않게 하기 위하여 함수 앞에 Debug_를 붙여주시면 감사 하겠읍니다.
+
+#if UNITY_EDITOR  // debug window 전용 함수 및 변수  
     public PlayerAttackSystem Debug_GetPlayerAttackSystem() => playerAttackSystem;
 #endif
 
