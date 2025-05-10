@@ -14,6 +14,7 @@ public class BaseAttackHandler : MonoBehaviour
 
     protected AttackHandlerEnum EnumType;
 
+    //객체없이 활용할 수 있는 전역 데이터
     public static Dictionary<AttackHandlerEnum, BaseAttackHandler> AllAttackHandles 
         = new Dictionary<AttackHandlerEnum, BaseAttackHandler>();
 
@@ -21,6 +22,7 @@ public class BaseAttackHandler : MonoBehaviour
 
     public ProjectileStatus CurrentStatus = new ProjectileStatus();
 
+    //활, 활에 들어갈 특성들 list 
     public Dictionary<PropertyEnum, List<ProjectileProperty>> Functions = new Dictionary<PropertyEnum, List<ProjectileProperty>>();
 
     public void AddProperty(ProjectileProperty _property) 
@@ -67,10 +69,15 @@ public class BaseAttackHandler : MonoBehaviour
         //충돌 시 작동될 함수
     }
 
-    public void HandlerUpdate()
+    public void HandlerUpdate()  // 공격력 이나 데미지 등이 증가하는 그거라했쬬?
     {
         foreach(ProjectileProperty property in Functions[PropertyEnum.Handler])
         {
+            //지금 스텟이 업그레이드 될건데, 일단 초기값으로 돌린 후 업그레이드를 합니다.
+            //공격력이 10인데  + 5
+            //11로 올라야하는데 base가 5였어요
+            // 16
+
             CurrentStatus.CopyValue(BaseStatus);
             property.HandlerFunctions(this);
         }

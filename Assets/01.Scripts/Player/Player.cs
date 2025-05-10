@@ -1,6 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+// 1. property manager 가 모든 속성을 갖고있다.
+// 2. baseattackhander에 있는 dictionary가 모든 공격타입을 갖고있다.
+// 3. 사용할거면 enum만들고, projectile만들고 stringclass property에 그거 추가하고
+// 자료구조에 다 넣으면됨
+
+
+
 public class Player : MonoBehaviour
 {
     public static Player Instance;
@@ -16,9 +23,11 @@ public class Player : MonoBehaviour
     //유성민 추가
     [SerializeField] PlayerAttackSystem playerAttackSystem;
 
+    //유성민 추가
     private void Update()
     {
         playerAttackSystem.Attack();
+        //debug
         if (Input.GetKeyDown(KeyCode.Space))
         {
             playerAttackSystem.AddProperty(AttackHandlerEnum.Arrow, PropertyManager.GetProperty(PropertyString.AddCounter));
