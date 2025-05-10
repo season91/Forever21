@@ -1,15 +1,30 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-// 1. property manager °¡ ¸ðµç ¼Ó¼ºÀ» °®°íÀÖ´Ù.
-// 2. baseattackhander¿¡ ÀÖ´Â dictionary°¡ ¸ðµç °ø°ÝÅ¸ÀÔÀ» °®°íÀÖ´Ù.
-// 3. »ç¿ëÇÒ°Å¸é enum¸¸µé°í, projectile¸¸µé°í stringclass property¿¡ ±×°Å Ãß°¡ÇÏ°í
-// ÀÚ·á±¸Á¶¿¡ ´Ù ³ÖÀ¸¸éµÊ
+// 1. property manager ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ó¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½.
+// 2. baseattackhanderï¿½ï¿½ ï¿½Ö´ï¿½ dictionaryï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½.
+// 3. ï¿½ï¿½ï¿½ï¿½Ò°Å¸ï¿½ enumï¿½ï¿½ï¿½ï¿½ï¿½, projectileï¿½ï¿½ï¿½ï¿½ï¿½ stringclass propertyï¿½ï¿½ ï¿½×°ï¿½ ï¿½ß°ï¿½ï¿½Ï°ï¿½
+// ï¿½Ú·á±¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
 
 public class Player : MonoBehaviour
 {
+
+    // playerAttackSystemï¿½ï¿½ privateï¿½ï¿½ï¿½ï¿½ debug editorï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñµï¿½, 
+
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ÏºÎ·ï¿½ ï¿½ï¿½ï¿½ï¿½Å½Ã´ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(exeï¿½ï¿½ï¿½Ï·ï¿½ ï¿½ï¿½È¯) ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½
+
+    // ï¿½Ø´ï¿½ Debug_GetPlayerAttackSystem() ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ publicï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Ô¼ï¿½ï¿½Ì°ï¿½
+
+    // ï¿½Ì·ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ó¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ debug windowï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½Ü¹ï¿½ 5ï¿½ï¿½ë¸¦ ï¿½Â¾Æ¾ï¿½ï¿½Ï´ï¿½
+
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½Ô¼ï¿½ ï¿½Õ¿ï¿½ Debug_ï¿½ï¿½ ï¿½Ù¿ï¿½ï¿½Ö½Ã¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï°ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
+
+#if UNITY_EDITOR  // debug window ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½  
+    public PlayerAttackSystem Debug_GetPlayerAttackSystem() => playerAttackSystem;
+#endif
+
     public static Player Instance;
 
     private Camera _camera;
@@ -20,22 +35,13 @@ public class Player : MonoBehaviour
     private PlayerController controller;
     private PlayerStatus status;
 
-    //À¯¼º¹Î Ãß°¡
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
     [SerializeField] PlayerAttackSystem playerAttackSystem;
 
-    //À¯¼º¹Î Ãß°¡
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
     private void Update()
     {
         playerAttackSystem.Attack();
-        //debug
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            playerAttackSystem.AddProperty(AttackHandlerEnum.Arrow, AttackSystemManager.instance.GetProperty(PropertyString.AddCounter));
-            playerAttackSystem.AddAttack(AttackHandlerEnum.Dager);
-            playerAttackSystem.AddAttack(AttackHandlerEnum.Axe);
-            playerAttackSystem.AddAttack(AttackHandlerEnum.Hammer);
-            playerAttackSystem.AddAttack(AttackHandlerEnum.Sword);
-        }
     }
 
     private Vector2 movementDirection = Vector2.zero;
@@ -43,19 +49,19 @@ public class Player : MonoBehaviour
 
     protected void Reset()
     {
-        // characterRenderer´Â Player Object¿¡¼­ »ç¿ëÇÒ Player ½ºÅ©¸³Æ®ÀÇ º¯¼öÀÓ
-        // characterRenderer¿¡ Player ÀÚ½Ä MainSprite¸¦ ³Ö¾îÁÖ´Â ÄÚµå
+        // characterRendererï¿½ï¿½ Player Objectï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Player ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        // characterRendererï¿½ï¿½ Player ï¿½Ú½ï¿½ MainSpriteï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½Ö´ï¿½ ï¿½Úµï¿½
         characterRenderer = GetComponentInChildren<SpriteRenderer>();
         InputActionAsset inputAsset = Resources.Load<InputActionAsset>("Input/PlayerInputControls");
 
-        // PlayerInput¿¡ ÇÒ´ç
+        // PlayerInputï¿½ï¿½ ï¿½Ò´ï¿½
         PlayerInput playerInput = GetComponent<PlayerInput>();
         playerInput.actions = inputAsset;
 
         controller = GetComponent<PlayerController>();
         controller.playerInput = playerInput;
 
-        //À¯¼º¹ÎÀÌ »ý¼º
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         playerAttackSystem = GetComponent<PlayerAttackSystem>();
     }
 
@@ -76,11 +82,11 @@ public class Player : MonoBehaviour
 
         _rigidbody = GetComponent<Rigidbody2D>();
         controller = GetComponent<PlayerController>(); 
-        controller.Init(); // ¸í½ÃÀû ÃÊ±âÈ­
+        controller.Init(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
 
-        controller.move.performed += ctx => Move(); // ÀÌµ¿
-        controller.move.canceled += ctx => Stop(); // ÀÌµ¿ ÁßÁö
-        controller.look.performed += ctx => Rotate(); // È¸Àü
+        controller.move.performed += ctx => Move(); // ï¿½Ìµï¿½
+        controller.move.canceled += ctx => Stop(); // ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
+        controller.look.performed += ctx => Rotate(); // È¸ï¿½ï¿½
 
         status = GetComponent<PlayerStatus>();
 
@@ -123,16 +129,16 @@ public class Player : MonoBehaviour
         characterRenderer.flipX = isLeft;
     }
 
-    // °æÇèÄ¡ È¹µæ Ã³¸®
+    // ï¿½ï¿½ï¿½ï¿½Ä¡ È¹ï¿½ï¿½ Ã³ï¿½ï¿½
     public void GetExp(int exp)
     {
         status.GainExp(exp);
     }
 
-    // ¸ó½ºÅÍ Ãæµ¹ Ã³¸®
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ Ã³ï¿½ï¿½
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // PlayetStatus ÇÇ°Ý Ã³¸® È£Ãâ ¿¡Á¤
+        // PlayetStatus ï¿½Ç°ï¿½ Ã³ï¿½ï¿½ È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (collision.gameObject.CompareTag(StringClass.Monster))
         {
             status.TakeDamage(20);
