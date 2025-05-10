@@ -31,6 +31,10 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             playerAttackSystem.AddProperty(AttackHandlerEnum.Arrow, AttackSystemManager.instance.GetProperty(PropertyString.AddCounter));
+            playerAttackSystem.AddAttack(AttackHandlerEnum.Dager);
+            playerAttackSystem.AddAttack(AttackHandlerEnum.Axe);
+            playerAttackSystem.AddAttack(AttackHandlerEnum.Hammer);
+            playerAttackSystem.AddAttack(AttackHandlerEnum.Sword);
         }
     }
 
