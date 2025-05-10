@@ -36,5 +36,12 @@ public class DebugWindow : EditorWindow  // 유니티에서 윈도우를 띄울려면 상속받�
             Player.Instance.Debug_GetPlayerAttackSystem().AddProperty(AttackHandlerEnum.Arrow, AttackSystemManager.instance.GetProperty(PropertyString.AddCounter));
         }
 
+        if (GUILayout.Button("Player Add Attack"))  // 조아영 debug 함수
+        {
+            Player.Instance.Debug_GetPlayerAttackSystem().AddAttack(AttackHandlerEnum.Dager);
+            Player.Instance.Debug_GetPlayerAttackSystem().AddAttack(AttackHandlerEnum.Axe);
+            Player.Instance.Debug_GetPlayerAttackSystem().AddAttack(AttackHandlerEnum.Hammer);
+            Player.Instance.Debug_GetPlayerAttackSystem().AddAttack(AttackHandlerEnum.Sword);
+        }
     }
 }
