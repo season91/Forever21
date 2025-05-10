@@ -10,6 +10,10 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+#if UNITY_EDITOR  // debug window 전용 함수 및 변수
+    public PlayerAttackSystem Debug_GetPlayerAttackSystem() => playerAttackSystem;
+#endif
+
     public static Player Instance;
 
     private Camera _camera;
@@ -27,11 +31,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         playerAttackSystem.Attack();
-        //debug
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            playerAttackSystem.AddProperty(AttackHandlerEnum.Arrow, AttackSystemManager.instance.GetProperty(PropertyString.AddCounter));
-        }
+
     }
 
     private Vector2 movementDirection = Vector2.zero;
